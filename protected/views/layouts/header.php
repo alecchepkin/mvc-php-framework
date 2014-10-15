@@ -23,6 +23,8 @@
             <div class="navigation">
                 <ul>
                     <li><a href="<?php echo URL; ?>">Home</a></li>
+                    <li><a href="<?php echo URL; ?>post/create">Create Posts</a></li>
+                    <li><a href="<?php echo URL; ?>post">List Posts</a></li>
                     <?php if (App::get()->user()->isGuest): ?>
                         <li><a href="<?php echo URL; ?>home/login">Login</a></li>
                     <?php else: ?>
@@ -30,7 +32,6 @@
                     <?php endif; ?>
                 </ul>
                 
-                <?php //print_r($_SESSION);?>
             </div>
             <div id="javascript-header-demo-box">
             </div>

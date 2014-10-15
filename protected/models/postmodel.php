@@ -2,10 +2,6 @@
 
 class PostModel {
 
-    /**
-     * Every model needs a database connection, passed to the model
-     * @param object $db A PDO database connection
-     */
     function __construct($db) {
         try {
             $this->db = $db;
@@ -14,35 +10,23 @@ class PostModel {
         }
     }
 
-    /**
-     * Get all songs from database
-     */
-    public function getAllPosts() {
+    public function getAllPosts($limit = null) {
         $sql = "SELECT id, title, body, date_created FROM post ORDER BY id DESC";
+        if($limit){
+            $sql.=" LIMIT $limit";
+        }
         $query = $this->db->prepare($sql);
         $query->execute();
 
-        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
-        // libs/controller.php! If you prefer to get an associative array as the result, then do
-        // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
-        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
     }
 
-    /**
-     * Get all songs from database
-     */
     public function getPost($post_id) {
         $sql = "SELECT id, title, body, date_created FROM post WHERE id='$post_id' LIMIT 1";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         return $query->fetch();
-        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
-        // libs/controller.php! If you prefer to get an associative array as the result, then do
-        // $query->fetchAll(PDO::FETCH_ASSOC); or change libs/controller.php's PDO options to
-        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
-        //return $query->fetchAll();
     }
 
     /**
@@ -52,6 +36,7 @@ class PostModel {
      */
     public function addPost($title, $body) {
         $title = strip_tags($title);
+        $title = substr($title, 0, 50);
         $body = strip_tags($body);
 
         $sql = "INSERT INTO post (title, body) VALUES (:title, :body)";

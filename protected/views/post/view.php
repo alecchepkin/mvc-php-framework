@@ -5,5 +5,6 @@
 <div>Body: <?php if (isset($post->body)) echo $post->body; ?></div>
 <?php if (false == App::get()->user()->isGuest): ?>
     <div><a href="<?php echo URL . 'post/delete/' . $post->id; ?>">Delete Post</a></div>
+    <div><a href="<?php echo URL . 'post/update/' . $post->id; ?>">Edit Post</a></div>
 <?php endif; ?>
 

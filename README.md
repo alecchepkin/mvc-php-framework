@@ -19,4 +19,3 @@ Build a very simple blog with the following functionality:
 5.	Delete a blog post.
 6.	Logout.
 HTML and CSS should be kept to the bare minimum needed to make the site functional – this exercise is purely to assess how you approach the problem and not how good it looks.
-

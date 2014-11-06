@@ -1,1 +1,1 @@
-# PHP Mini Framework #
+# Mini PHP Framework #
